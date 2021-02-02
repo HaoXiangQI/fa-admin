@@ -7,7 +7,7 @@ from pydantic.networks import AnyUrl
 
 # 数据库配置模型
 class DataBaseDsn(AnyUrl):
-    allowed_schemes = {'postgres', 'postgresql', 'mysql'}
+    allowed_schemes = {'postgres', 'postgresql', 'mysql+pymysql'}
     user_required = True
 
 
@@ -37,7 +37,7 @@ class Settings(BaseSettings):
         if isinstance(v, str):
             return v
         return DataBaseDsn.build(
-            scheme=values.get("DATABASE_ENGINE"),
+            scheme=values.get("DATABASE_ENGINE") + '+pymysql',
             user=values.get("DATABASE_USER"),
             password=values.get("DATABASE_PASSWORD"),
             host=values.get("DATABASE_HOST"),

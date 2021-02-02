@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.core.importer import import_path
+from tortoise.contrib.fastapi import register_tortoise
+
+
 
 def get_application():
     _app = FastAPI(title=settings.PROJECT_NAME)
@@ -18,6 +21,8 @@ def get_application():
 
 
     return _app
+
+
 
 def register_router(_app: FastAPI) -> None:
     """
@@ -42,6 +47,16 @@ def register_cors(_app: FastAPI) -> None:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+def register_database(_app:FastAPI) -> None:
+    """
+    数据库配置
+    :param _app:
+    :return:
+    """
+    @_app.on_event('startup')
+    def init_db():
+        pass
 
 # todo
 def register_logging(_app: FastAPI) -> None:
