@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.core.importer import import_path
-from tortoise.contrib.fastapi import register_tortoise
 
 
 
@@ -48,9 +47,10 @@ def register_cors(_app: FastAPI) -> None:
         allow_headers=["*"],
     )
 
+# todo
 def register_database(_app:FastAPI) -> None:
     """
-    数据库配置
+    数据库配置 现在的配置入口当前包下的database.py中
     :param _app:
     :return:
     """
