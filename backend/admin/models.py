@@ -11,7 +11,6 @@ class ProdEdition(Model):
     """
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=100)
-
     product_sub_edition: fields.ReverseRelation["ProdSubEdition"]
 
     class Meta:

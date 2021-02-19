@@ -56,10 +56,6 @@ def get_tortoise_config() -> dict:
     #         ctx=ctx,
     #     )
     config = settings.DATABASE_SETTINGS
-    # print('===================================')
-    # config['apps']['models']['models'].append('app.db.migrations.models')
-    # print(type(config), config)
-    # print('===================================')
     return config
 
 
@@ -122,7 +118,11 @@ def get_models_describe(app: str) -> Dict:
     :return:
     """
     ret = {}
+    # print(list(Tortoise.apps.get(app).values())[0].describe())
     for model in Tortoise.apps.get(app).values():
         describe = model.describe()
         ret[describe.get("name")] = describe
     return ret
+
+def check_migrations_exist(location):
+    pass

@@ -118,11 +118,15 @@ class Migrate:
     async def migrate(cls, name) -> str:
         """
         diff old models and new models to generate diff content
+        对比新旧数据模型
         :param name:
         :return:
         """
+        # 获取模型名称和数据模型字典
         new_version_content = get_models_describe(cls.app)
+
         cls.diff_models(cls._last_version_content, new_version_content)
+
         cls.diff_models(new_version_content, cls._last_version_content, False)
 
         cls._merge_operators()
@@ -162,6 +166,7 @@ class Migrate:
         :return:
         """
         _aerich = f"{cls.app}.{cls._aerich}"
+        # 这里old_models 为空导致的
         old_models.pop(_aerich, None)
         new_models.pop(_aerich, None)
 

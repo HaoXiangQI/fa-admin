@@ -68,6 +68,7 @@ async def migration_cli(ctx: Context, config, app, name):
     ctx.obj["config_file"] = config
     ctx.obj["name"] = name
 
+    # invoked_subcommand 是子命令 例如 init migrate 等
     invoked_subcommand = ctx.invoked_subcommand
     if invoked_subcommand != "init":
         if not Path(config).exists():
@@ -78,14 +79,19 @@ async def migration_cli(ctx: Context, config, app, name):
 
         tortoise_config = get_tortoise_config()
         app = app or list(tortoise_config.get("apps").keys())[0]
+        # migrate 命令需要在建立一个用来记录迁移数据的表这里需要将这个表添加进去
         tortoise_config["apps"]["models"]["models"].append('app.db.migrations.models')
         ctx.obj["config"] = tortoise_config
         ctx.obj["location"] = location
         ctx.obj["app"] = app
         Migrate.app = app
+
         if invoked_subcommand != "init-db":
             if not Path(location, app).exists():
                 raise UsageError("You must exec init-db first", ctx=ctx)
+            # todo 将这里生成的sql文件尝试转换为json文件
+            # 需要解决的问题是当数据库中没有migrations数据 只有migrations 文件夹时数据恢复的问题
+            # 解决思路 在想办法知道migrations文件夹中哪个是head文件恢复其表结构
             await Migrate.init(tortoise_config, app, location)
 
 
