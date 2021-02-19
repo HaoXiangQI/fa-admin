@@ -8,7 +8,7 @@ from tortoise import Model, fields
 class Event(Model):
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=255)
-    # datetime = fields.DatetimeField(null=True)
+    datetime = fields.DatetimeField(null=True)
 
     class Meta:
         table = "event"

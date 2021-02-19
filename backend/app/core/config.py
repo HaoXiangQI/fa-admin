@@ -1,9 +1,9 @@
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import AnyHttpUrl, BaseSettings, PostgresDsn, validator, BaseModel
+from pydantic import BaseSettings, validator
 from pydantic.networks import AnyUrl
 
-from app.core.database import DataBaseSettings
+from app.db.database import DataBaseSettings
 import app.settings as sett
 # 数据库配置模型
 class DataBaseDsn(AnyUrl):
