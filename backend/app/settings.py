@@ -22,7 +22,4 @@ settings = Settings(
     APPS=apps
 )
 
-# if __name__ == '__main__':
-#     from pprint import pprint
-#     pprint(apps)
-    # pprint(Settings(APPS=apps))
+

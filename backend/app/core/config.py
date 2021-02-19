@@ -103,14 +103,3 @@ class Settings(BaseSettings):
 
 
 # settings = Settings()
-
-if __name__ == "__main__":
-    from pprint import pprint
-    #
-    # print(str(settings.DATABASE_URI))
-    # pprint(settings.DATABASE_SETTINGS)
-    # print(apps)
-    # print(TORTOISE_ORM)
-    settings = Settings(APPS=sett.apps)
-    pprint(settings.dict())
-    # print(sett.apps)

@@ -7,7 +7,3 @@ from app.core.importer import import_path
 
 router = APIRouter()
 router.include_router(import_path('admin'))
-
-
-if __name__ == '__main__':
-    print(import_path('admin'))

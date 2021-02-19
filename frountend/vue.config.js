@@ -38,8 +38,8 @@ module.exports = {
     },
     // before: require('./mock/mock-server.js')
     proxy: {
-      '/dev-api': {	
-        target: `http://172.29.228.183:8888`, // 后台服务地址
+      '/dev-api': {
+        target: `http://172.24.185.175:8888`, // 后台服务地址
         changeOrigin: true,
         pathRewrite: {
           '^/dev-api': '/' // 路径重写

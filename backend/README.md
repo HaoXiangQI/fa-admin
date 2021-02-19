@@ -50,3 +50,10 @@ DATABASE_HOST=172.18.173.166
 DATABASE_PORT=3306
 DATABASE_DB=banshi
 ```
+
+## 数据库迁移功能
+### 已知bug
+
+1. 表更改为db_constraint 时进行migrate 报 No upgrade items found 错误
+2. migrate 失败后只能删除migrations后再操作后生效
+3. 添加 class Meta时会 AttributeError: 'str' object has no attribute 'get'
